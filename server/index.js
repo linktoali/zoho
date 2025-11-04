@@ -2,10 +2,10 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import squarePkg from 'square';
+import square from 'square';
 import crypto from 'crypto';
 
-const { Client, Environment } = squarePkg;
+const { SquareClient, SquareEnvironment } = square;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,9 +26,9 @@ const SQUARE_LOCATION_ID = process.env.SQUARE_LOCATION_ID;
 
 let squareClient = null;
 if (SQUARE_ACCESS_TOKEN) {
-  squareClient = new Client({
+  squareClient = new SquareClient({
     accessToken: SQUARE_ACCESS_TOKEN,
-    environment: isProduction ? Environment.Production : Environment.Sandbox
+    environment: isProduction ? SquareEnvironment.Production : SquareEnvironment.Sandbox
   });
 }
 
