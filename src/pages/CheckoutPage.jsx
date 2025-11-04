@@ -218,10 +218,20 @@ function CheckoutPage({ cart, cartTotal, clearCart }) {
           {isOnlinePayment && SQUARE_APP_ID && SQUARE_LOCATION_ID && (
             <div className="square-payment-section">
               <h3>Complete Payment</h3>
+              <div className="test-card-info">
+                <p><strong>For testing, use these Square test card numbers:</strong></p>
+                <p>Card: 4111 1111 1111 1111 | CVV: 111 | Exp: Any future date | Zip: Any 5 digits</p>
+              </div>
               <PaymentForm
                 applicationId={SQUARE_APP_ID}
                 locationId={SQUARE_LOCATION_ID}
-                cardTokenizeResponseReceived={async (token) => {
+                cardTokenizeResponseReceived={async (token, buyer) => {
+                  if (token.errors && token.errors.length > 0) {
+                    const errorMessages = token.errors.map(error => error.message).join(', ')
+                    setError(`Payment Error: ${errorMessages}`)
+                    setLoading(false)
+                    return
+                  }
                   await handleSquarePayment(token.token)
                 }}
                 createVerificationDetails={() => ({
@@ -238,7 +248,12 @@ function CheckoutPage({ cart, cartTotal, clearCart }) {
                   intent: 'CHARGE'
                 })}
               >
-                <CreditCard />
+                <CreditCard 
+                  includeInputLabels
+                  buttonProps={{
+                    isLoading: loading
+                  }}
+                />
               </PaymentForm>
             </div>
           )}

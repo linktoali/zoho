@@ -192,6 +192,24 @@
   color: #333;
 }
 
+.test-card-info {
+  background-color: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.test-card-info p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  color: #856404;
+}
+
+.test-card-info p:first-child {
+  font-weight: 600;
+}
+
 @media (max-width: 768px) {
   .checkout-container {
     grid-template-columns: 1fr;
