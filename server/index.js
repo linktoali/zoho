@@ -138,14 +138,15 @@ app.post('/api/orders/square-payment', async (req, res) => {
 
     const amountInCents = Math.round(totalAmount * 100);
 
-    const paymentResponse = await squareClient.paymentsApi.createPayment({
+    const paymentResponse = await squareClient.payments.create({
       sourceId: paymentToken,
       idempotencyKey: crypto.randomUUID(),
       amountMoney: {
         amount: BigInt(amountInCents),
         currency: 'USD'
       },
-      locationId: SQUARE_LOCATION_ID
+      locationId: SQUARE_LOCATION_ID,
+      autocomplete: true
     });
 
     const order = {
