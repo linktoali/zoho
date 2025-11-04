@@ -246,7 +246,7 @@ function CheckoutPage({ cart, cartTotal, clearCart }) {
           {isOnlinePayment && SQUARE_APP_ID && SQUARE_LOCATION_ID && (
             <div className="square-payment-section">
               <h3>Complete Payment</h3>
-              {error && <div className="error-message">{error}</div>}
+              {error && <div className="error-message" style={{ marginBottom: '1rem' }}>{error}</div>}
               <div className="test-card-info">
                 <p><strong>For testing, use these Square test card numbers:</strong></p>
                 <p>Card: 4111 1111 1111 1111 | CVV: 111 | Exp: Any future date | Zip: Any 5 digits</p>
@@ -257,34 +257,28 @@ function CheckoutPage({ cart, cartTotal, clearCart }) {
                 cardTokenizeResponseReceived={async (token, buyer) => {
                   console.log('Token received:', token)
                   
-                  if (!token || !token.token) {
-                    setError('Failed to process card information. Please check your card details and try again.')
+                  try {
+                    if (token.errors && token.errors.length > 0) {
+                      console.error('Token errors:', token.errors)
+                      const errorMessages = token.errors.map(error => error.message || error.type || 'Unknown error').join(', ')
+                      setError(`Payment Error: ${errorMessages}`)
+                      setLoading(false)
+                      return
+                    }
+                    
+                    if (!token || !token.token) {
+                      setError('Failed to process card. Please check your card details.')
+                      setLoading(false)
+                      return
+                    }
+                    
+                    await handleSquarePayment(token.token)
+                  } catch (e) {
+                    console.error('Tokenization error:', e)
+                    setError('Payment failed: ' + (e.message || 'Please try again'))
                     setLoading(false)
-                    return
                   }
-                  
-                  if (token.errors && token.errors.length > 0) {
-                    const errorMessages = token.errors.map(error => error.message).join(', ')
-                    setError(`Payment Error: ${errorMessages}`)
-                    setLoading(false)
-                    return
-                  }
-                  
-                  await handleSquarePayment(token.token)
                 }}
-                createVerificationDetails={() => ({
-                  amount: cartTotal.toFixed(2),
-                  billingContact: {
-                    givenName: formData.fullName.split(' ')[0] || '',
-                    familyName: formData.fullName.split(' ').slice(1).join(' ') || '',
-                    email: formData.email,
-                    phone: formData.phoneNumber,
-                    addressLines: [formData.address],
-                    countryCode: 'US'
-                  },
-                  currencyCode: 'USD',
-                  intent: 'CHARGE'
-                })}
               >
                 <CreditCard 
                   includeInputLabels
