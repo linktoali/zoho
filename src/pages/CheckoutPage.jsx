@@ -77,11 +77,39 @@ function CheckoutPage({ cart, cartTotal, clearCart }) {
     }
   }
 
+  const validateFormForPayment = () => {
+    if (!formData.fullName.trim()) {
+      setError('Please enter your full name')
+      return false
+    }
+    if (!formData.email.trim()) {
+      setError('Please enter your email')
+      return false
+    }
+    if (!formData.phoneNumber.trim()) {
+      setError('Please enter your phone number')
+      return false
+    }
+    if (formData.paymentMethod !== 'pickup' && !formData.address.trim()) {
+      setError('Please enter your address')
+      return false
+    }
+    return true
+  }
+
   const handleSquarePayment = async (token) => {
+    if (!validateFormForPayment()) {
+      return
+    }
+
     setLoading(true)
     setError('')
 
     try {
+      if (!token) {
+        throw new Error('Failed to process card information. Please check your card details and try again.')
+      }
+
       const orderData = {
         ...formData,
         paymentMethod: 'online',
@@ -112,7 +140,7 @@ function CheckoutPage({ cart, cartTotal, clearCart }) {
         setError(data.message || 'Payment failed. Please try again.')
       }
     } catch (err) {
-      setError('Payment failed. Please try again.')
+      setError(err.message || 'Payment failed. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -218,6 +246,7 @@ function CheckoutPage({ cart, cartTotal, clearCart }) {
           {isOnlinePayment && SQUARE_APP_ID && SQUARE_LOCATION_ID && (
             <div className="square-payment-section">
               <h3>Complete Payment</h3>
+              {error && <div className="error-message">{error}</div>}
               <div className="test-card-info">
                 <p><strong>For testing, use these Square test card numbers:</strong></p>
                 <p>Card: 4111 1111 1111 1111 | CVV: 111 | Exp: Any future date | Zip: Any 5 digits</p>
@@ -226,12 +255,21 @@ function CheckoutPage({ cart, cartTotal, clearCart }) {
                 applicationId={SQUARE_APP_ID}
                 locationId={SQUARE_LOCATION_ID}
                 cardTokenizeResponseReceived={async (token, buyer) => {
+                  console.log('Token received:', token)
+                  
+                  if (!token || !token.token) {
+                    setError('Failed to process card information. Please check your card details and try again.')
+                    setLoading(false)
+                    return
+                  }
+                  
                   if (token.errors && token.errors.length > 0) {
                     const errorMessages = token.errors.map(error => error.message).join(', ')
                     setError(`Payment Error: ${errorMessages}`)
                     setLoading(false)
                     return
                   }
+                  
                   await handleSquarePayment(token.token)
                 }}
                 createVerificationDetails={() => ({
