@@ -23,27 +23,13 @@ if (isProduction) {
 
 const SQUARE_ACCESS_TOKEN = process.env.SQUARE_ACCESS_TOKEN;
 const SQUARE_LOCATION_ID = process.env.SQUARE_LOCATION_ID;
-const SQUARE_ENVIRONMENT = process.env.SQUARE_ENVIRONMENT || 'sandbox';
-
-console.log('Square Configuration Check:');
-console.log('- Access Token:', SQUARE_ACCESS_TOKEN ? 'Set ✓' : 'Not Set ✗');
-console.log('- Location ID:', SQUARE_LOCATION_ID ? 'Set ✓' : 'Not Set ✗');
-console.log('- Environment Setting:', SQUARE_ENVIRONMENT);
 
 let squareClient = null;
 if (SQUARE_ACCESS_TOKEN) {
-  const environment = SQUARE_ENVIRONMENT.toLowerCase() === 'production' 
-    ? SquareEnvironment.Production 
-    : SquareEnvironment.Sandbox;
-    
   squareClient = new SquareClient({
     token: SQUARE_ACCESS_TOKEN,
-    environment: environment
+    environment: isProduction ? SquareEnvironment.Production : SquareEnvironment.Sandbox
   });
-  console.log('Square client initialized successfully ✓');
-  console.log('- Using Environment:', SQUARE_ENVIRONMENT.toLowerCase() === 'production' ? 'Production (Live Payments)' : 'Sandbox (Testing Mode)');
-} else {
-  console.log('⚠️ Square client NOT initialized - missing access token');
 }
 
 const orders = [];
