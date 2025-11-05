@@ -1,0 +1,56 @@
+ Square payment error: SquareError: Status code: 401
+[0] Body: {
+[0]   "errors": [
+[0]     {
+[0]       "category": "AUTHENTICATION_ERROR",
+[0]       "code": "UNAUTHORIZED",
+[0]       "detail": "This request could not be authorized."
+[0]     }
+[0]   ]
+[0] }
+[0]     at Payments.<anonymous> (/home/runner/workspace/node_modules/square/api/resources/payments/client/Client.js:281:23)
+[0]     at Generator.next (<anonymous>)
+[0]     at fulfilled (/home/runner/workspace/node_modules/square/api/resources/payments/client/Client.js:39:58)
+[0]     at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {
+[0]   statusCode: 401,
+[0]   rawResponse: {
+[0]     headers: Headers {
+[0]       date: 'Wed, 05 Nov 2025 07:12:18 GMT',
+[0]       'content-type': 'application/json',
+[0]       'content-length': '161',
+[0]       connection: 'keep-alive',
+[0]       server: 'cloudflare',
+[0]       'cf-ray': '999a8ac10ee110df-ORD',
+[0]       'cf-cache-status': 'DYNAMIC',
+[0]       'strict-transport-security': 'max-age=631152000; includeSubDomains; preload',
+[0]       vary: 'Origin, Accept-Encoding',
+[0]       'x-content-type-options': 'nosniff',
+[0]       'x-download-options': 'noopen',
+[0]       'x-envoy-decorator-operation': '/v2/payments/**',
+[0]       'x-frame-options': 'SAMEORIGIN',
+[0]       'x-permitted-cross-domain-policies': 'none',
+[0]       'x-sq-dc': 'aws',
+[0]       'x-sq-envoy-safe-auth-decision': 'UNAUTHORIZED',
+[0]       'x-sq-istio-migration-egress-proxy': 'sq-envoy',
+[0]       'x-sq-istio-migration-egress-region': 'us-west-2',
+[0]       'x-sq-istio-migration-ingress-proxy': 'sq-envoy',
+[0]       'x-sq-istio-migration-ingress-region': 'us-west-2',
+[0]       'x-sq-region': 'us-west-2',
+[0]       'x-xss-protection': '1; mode=block',
+[0]       'set-cookie': '__cf_bm=2hdhNiH0QZTSMkzUWttgUPHSwl6DTRZFtPERUkQUPaQ-1762326738-1.0.1.1-jOkVtu3USnk5k7.Tc.jTvJtWcBQNnhF9kRzUhssJNUzfdz3YYA6IVa5g5N05Zax1CJsCnJrhuPuXh0kt3YcRBgduOYVwP08uPwIvsXlvLVE; path=/; expires=Wed, 05-Nov-25 07:42:18 GMT; domain=.squareupsandbox.com; HttpOnly; Secure; SameSite=None'
+[0]     },
+[0]     redirected: false,
+[0]     status: 401,
+[0]     statusText: 'Unauthorized',
+[0]     type: 'basic',
+[0]     url: 'https://connect.squareupsandbox.com/v2/payments'
+[0]   },
+[0]   body: { errors: [ [Object] ] },
+[0]   errors: [
+[0]     {
+[0]       category: 'AUTHENTICATION_ERROR',
+[0]       code: 'UNAUTHORIZED',
+[0]       detail: 'This request could not be authorized.'
+[0]     }
+[0]   ]
+[0] }
