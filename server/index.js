@@ -160,8 +160,8 @@ app.post('/api/orders/square-payment', async (req, res) => {
       totalAmount,
       orderDate: new Date(),
       status: 'paid',
-      paymentId: paymentResponse.result.payment.id,
-      paymentStatus: paymentResponse.result.payment.status
+      paymentId: paymentResponse.payment?.id,
+      paymentStatus: paymentResponse.payment?.status
     };
 
     orders.push(order);
