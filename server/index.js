@@ -32,9 +32,10 @@ let squareClient = null;
 if (SQUARE_ACCESS_TOKEN) {
   squareClient = new SquareClient({
     token: SQUARE_ACCESS_TOKEN,
-    environment: isProduction ? SquareEnvironment.Production : SquareEnvironment.Sandbox
+    environment: SquareEnvironment.Production
   });
   console.log('Square client initialized successfully ✓');
+  console.log('- Environment: Production');
 } else {
   console.log('⚠️ Square client NOT initialized - missing access token');
 }
