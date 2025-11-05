@@ -45,6 +45,10 @@ externalPort = 3002
 localPort = 39591
 externalPort = 3000
 
+[[ports]]
+localPort = 39781
+externalPort = 3003
+
 [deployment]
 deploymentTarget = "autoscale"
 run = ["bash", "-c", "NODE_ENV=production node server/index.js"]

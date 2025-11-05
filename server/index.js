@@ -27,7 +27,7 @@ const SQUARE_LOCATION_ID = process.env.SQUARE_LOCATION_ID;
 let squareClient = null;
 if (SQUARE_ACCESS_TOKEN) {
   squareClient = new SquareClient({
-    accessToken: SQUARE_ACCESS_TOKEN,
+    token: SQUARE_ACCESS_TOKEN,
     environment: isProduction ? SquareEnvironment.Production : SquareEnvironment.Sandbox
   });
 }
