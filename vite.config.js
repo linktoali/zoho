@@ -14,6 +14,10 @@ export default defineConfig({
       }
     }
   },
+  define: {
+    'import.meta.env.VITE_SQUARE_APP_ID': JSON.stringify(process.env.SQUARE_APP_ID),
+    'import.meta.env.VITE_SQUARE_LOCATION_ID': JSON.stringify(process.env.SQUARE_LOCATION_ID)
+  },
   resolve: {
     alias: {
       '@assets': '/attached_assets'
