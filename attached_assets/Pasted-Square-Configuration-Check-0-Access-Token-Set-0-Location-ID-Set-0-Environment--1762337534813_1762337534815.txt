@@ -1,0 +1,131 @@
+Square Configuration Check:
+[0] - Access Token: Set ✓
+[0] - Location ID: Set ✓
+[0] - Environment Setting: sandbox
+[0] Square client initialized successfully ✓
+[0] - Using Environment: Sandbox (Testing Mode)
+[0] Server running on http://0.0.0.0:3001
+[0] New order placed: {
+[0]   _id: '1762337439721',
+[0]   fullName: 'ali',
+[0]   email: 'ali@gmail.com',
+[0]   address: 'uni road',
+[0]   phoneNumber: '03124567890',
+[0]   paymentMethod: 'cash',
+[0]   pizzas: [ { id: 6, name: 'Meat Lovers', price: 17.99, quantity: 1 } ],
+[0]   totalAmount: 17.99,
+[0]   orderDate: 2025-11-05T10:10:39.721Z,
+[0]   status: 'pending'
+[0] }
+[0] Square payment error: SquareError: Status code: 401
+[0] Body: {
+[0]   "errors": [
+[0]     {
+[0]       "category": "AUTHENTICATION_ERROR",
+[0]       "code": "UNAUTHORIZED",
+[0]       "detail": "This request could not be authorized."
+[0]     }
+[0]   ]
+[0] }
+[0]     at Payments.<anonymous> (/home/runner/workspace/node_modules/square/api/resources/payments/client/Client.js:281:23)
+[0]     at Generator.next (<anonymous>)
+[0]     at fulfilled (/home/runner/workspace/node_modules/square/api/resources/payments/client/Client.js:39:58)
+[0]     at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {
+[0]   statusCode: 401,
+[0]   rawResponse: {
+[0]     headers: Headers {
+[0]       date: 'Wed, 05 Nov 2025 10:10:43 GMT',
+[0]       'content-type': 'application/json',
+[0]       'content-length': '161',
+[0]       connection: 'keep-alive',
+[0]       server: 'cloudflare',
+[0]       'cf-ray': '999b901f49730b6f-ATL',
+[0]       'cf-cache-status': 'DYNAMIC',
+[0]       'strict-transport-security': 'max-age=631152000; includeSubDomains; preload',
+[0]       vary: 'Origin, Accept-Encoding',
+[0]       'x-content-type-options': 'nosniff',
+[0]       'x-download-options': 'noopen',
+[0]       'x-envoy-decorator-operation': '/v2/payments/**',
+[0]       'x-frame-options': 'SAMEORIGIN',
+[0]       'x-permitted-cross-domain-policies': 'none',
+[0]       'x-sq-dc': 'aws',
+[0]       'x-sq-envoy-safe-auth-decision': 'UNAUTHORIZED',
+[0]       'x-sq-istio-migration-egress-proxy': 'sq-envoy',
+[0]       'x-sq-istio-migration-egress-region': 'us-west-2',
+[0]       'x-sq-istio-migration-ingress-proxy': 'sq-envoy',
+[0]       'x-sq-istio-migration-ingress-region': 'us-west-2',
+[0]       'x-sq-region': 'us-west-2',
+[0]       'x-xss-protection': '1; mode=block',
+[0]       'set-cookie': '__cf_bm=M.ig0sEaKEbnz6TPKJhZZJ3iRjdhVXof6YZqPa3airs-1762337443-1.0.1.1-Qw7Qppwt8t72hRy8dsMNotb9E2MHvftTbRUP8ma9TzTx0ggZj0LWRZpl3GcVZsfE7XxIsD1nrK8W_I3qr.CxOqoRbpyhsbU3CBzJozlecuo; path=/; expires=Wed, 05-Nov-25 10:40:43 GMT; domain=.squareupsandbox.com; HttpOnly; Secure; SameSite=None'
+[0]     },
+[0]     redirected: false,
+[0]     status: 401,
+[0]     statusText: 'Unauthorized',
+[0]     type: 'basic',
+[0]     url: 'https://connect.squareupsandbox.com/v2/payments'
+[0]   },
+[0]   body: { errors: [ [Object] ] },
+[0]   errors: [
+[0]     {
+[0]       category: 'AUTHENTICATION_ERROR',
+[0]       code: 'UNAUTHORIZED',
+[0]       detail: 'This request could not be authorized.'
+[0]     }
+[0]   ]
+[0] }
+[0] Square payment error: SquareError: Status code: 401
+[0] Body: {
+[0]   "errors": [
+[0]     {
+[0]       "category": "AUTHENTICATION_ERROR",
+[0]       "code": "UNAUTHORIZED",
+[0]       "detail": "This request could not be authorized."
+[0]     }
+[0]   ]
+[0] }
+[0]     at Payments.<anonymous> (/home/runner/workspace/node_modules/square/api/resources/payments/client/Client.js:281:23)
+[0]     at Generator.next (<anonymous>)
+[0]     at fulfilled (/home/runner/workspace/node_modules/square/api/resources/payments/client/Client.js:39:58)
+[0]     at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {
+[0]   statusCode: 401,
+[0]   rawResponse: {
+[0]     headers: Headers {
+[0]       date: 'Wed, 05 Nov 2025 10:11:20 GMT',
+[0]       'content-type': 'application/json',
+[0]       'content-length': '161',
+[0]       connection: 'keep-alive',
+[0]       server: 'cloudflare',
+[0]       'cf-ray': '999b91054bc4bf7c-ATL',
+[0]       'cf-cache-status': 'DYNAMIC',
+[0]       'strict-transport-security': 'max-age=631152000; includeSubDomains; preload',
+[0]       vary: 'Origin, Accept-Encoding',
+[0]       'x-content-type-options': 'nosniff',
+[0]       'x-download-options': 'noopen',
+[0]       'x-envoy-decorator-operation': '/v2/payments/**',
+[0]       'x-frame-options': 'SAMEORIGIN',
+[0]       'x-permitted-cross-domain-policies': 'none',
+[0]       'x-sq-dc': 'aws',
+[0]       'x-sq-envoy-safe-auth-decision': 'UNAUTHORIZED',
+[0]       'x-sq-istio-migration-egress-proxy': 'sq-envoy',
+[0]       'x-sq-istio-migration-egress-region': 'us-west-2',
+[0]       'x-sq-istio-migration-ingress-proxy': 'sq-envoy',
+[0]       'x-sq-istio-migration-ingress-region': 'us-west-2',
+[0]       'x-sq-region': 'us-west-2',
+[0]       'x-xss-protection': '1; mode=block',
+[0]       'set-cookie': '__cf_bm=nOOV2lk_vJGItBUxTUyPkniv6fSLq1fHl_Kyc9eYt50-1762337480-1.0.1.1-egJNye3rZ5tPwT1l._z2MPvFvJumI1oJgLG_yV3gnSaVNAaUpuF3LSZ3OFI6xAUuBDQBrpE340d0Ek3sv2ZhiGUDAyA3e4V_o770QxuayGo; path=/; expires=Wed, 05-Nov-25 10:41:20 GMT; domain=.squareupsandbox.com; HttpOnly; Secure; SameSite=None'
+[0]     },
+[0]     redirected: false,
+[0]     status: 401,
+[0]     statusText: 'Unauthorized',
+[0]     type: 'basic',
+[0]     url: 'https://connect.squareupsandbox.com/v2/payments'
+[0]   },
+[0]   body: { errors: [ [Object] ] },
+[0]   errors: [
+[0]     {
+[0]       category: 'AUTHENTICATION_ERROR',
+[0]       code: 'UNAUTHORIZED',
+[0]       detail: 'This request could not be authorized.'
+[0]     }
+[0]   ]
+[0] }
